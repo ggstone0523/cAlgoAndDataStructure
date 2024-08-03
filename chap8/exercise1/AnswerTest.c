@@ -13,7 +13,6 @@ int main() {
 	for(i = 0; i < len; i++) {
 		setSET(strArr[i], setArr[i], hashtable);
 	}
-	
 	for(i = 0; i < len; i++) {
 		set = getSET(strArr[i], hashtable);
 		printf("%s's set is %c\n", strArr[i], set);
@@ -21,12 +20,31 @@ int main() {
 
 	printf("\nA union C\n\n");
 	unionSET('A', 'C', hashtable);
-
 	for(i = 0; i < len; i++) {
 		set = getSET(strArr[i], hashtable);
 		printf("%s's set is %c\n", strArr[i], set);
 	}
 	printf("\nhashtable info: size=>%d, usage=>%d\n", hashtable->len, hashtable->usage);
-
+	
+	printf("\ndelete hello key\n\n");
+	deleteSETNode(strArr[0], hashtable);
+	for(i = 0; i < len; i++) {
+		set = getSET(strArr[i], hashtable);
+		if(set != '\0')
+			printf("%s's set is %c\n", strArr[i], set);
+	}
+	printf("\nhashtable info: size=>%d, usage=>%d\n", hashtable->len, hashtable->usage);
+	
+	printf("\ndelete union A\n\n");
+	deleteSET('A', hashtable);
+	for(i = 0; i < len; i++) {
+		set = getSET(strArr[i], hashtable);
+		if(set != '\0')
+			printf("%s's set is %c\n", strArr[i], set);
+	}
+	printf("\nhashtable info: size=>%d, usage=>%d\n", hashtable->len, hashtable->usage);
+	
+	removeHashTable(hashtable);
+	
 	return 0;
 }
